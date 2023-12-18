@@ -1,0 +1,54 @@
+.board {
+  width: 150px;
+  padding: 10px;
+  position: absolute;
+  top: 78px;
+  right: 17px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 0 8px #0000001a;
+}
+
+.menu {
+  width: 150px;
+  padding: 10px;
+  position: absolute;
+  top: 80px;
+  left: 172px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 0 8px #0000001a;
+}
+.addToBoard {
+  width: 150px;
+  padding: 10px;
+  border-radius: 10px;
+  position: absolute;
+  top: 20px;
+  right: 162px;
+  background: white;
+  box-shadow: 0 0 8px #0000001a;
+}
+
+.complaint {
+  padding: 35px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 350px;
+  left: 37%;
+  background: white;
+  box-shadow: 0 0 8px #0000001a;
+}
+
+.complaintPin {
+  text-align: center;
+  font-size: 35px;
+  padding-bottom: 30px;
+}
+
+.complaintItem {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 30px;
+  gap: 10px;
+}

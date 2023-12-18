@@ -1,0 +1,23 @@
+{
+  "name": "graduationproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel ./src/index.html",
+    "styles": "sass --watch src/sass:src/css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  },
+  "dependencies": {
+    "jquery": "^3.7.1",
+    "masonry": "^0.0.2",
+    "sass": "^1.69.5"
+  }
+}

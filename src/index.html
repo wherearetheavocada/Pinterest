@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinterest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Pacifico&family=Permanent+Marker&family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="header">
+        <a href="#" class="pinterest">Pinterest</a>
+        <input name="searchByTag" id="searchByTag" placeholder="поиск" >
+    <button class="btn">Выбрать доску</button>
+    </div>
+<div class="root">
+    <div class="main">
+        <ul class="gallery"></ul>
+    </div>
+    <div class="menu">
+        <ul class="menuList">
+            <li class="menuItem">
+                <button class="btnMenu boardBnt" type="button">Добавить на доску</button>
+            </li>
+            <li class="menuItem">
+                <button class="btnMenu complainBtn" type="button">Пожаловаться</button>
+            </li>
+        </ul>
+        <div class="addToBoard">
+            <ul class="menuList">
+                <li class="menuItem">
+                    <button class="btnMenu addToBoardBtnFirst" type="button">Доска 1</button>
+                </li>
+                <li class="menuItem">
+                    <button class="btnMenu addToBoardBtnSecond" type="button">Доска 2</button>
+                </li>
+                <li class="menuItem">
+                    <button class="btnMenu addToBoardBtnThird" type="button">Доска 3</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="complaint">
+        <h1 class="complaintPin">Пожаловаться</h1>
+        <label class="complaintItem">
+            <input type="radio" name="complain" value="spam" />
+            Неприличное фото
+          </label>
+          <label class="complaintItem">
+            <input type="radio" name="complain" value="spam" />
+            Оскорбление
+          </label>
+          <label class="complaintItem">
+            <input type="radio" name="complain" value="spam" />
+            Опасный товар
+          </label>
+          <div class="buttonСomplaint">
+            <button class="btnComplaint btnCancel">cancel</button>
+            <button class="btnComplaint btnSend">send</button>
+          </div>
+    </div>
+    <div class="board">
+        <ul class="boardList">
+            <li class="boardItem">
+                <button class="btnMenu btnBoard" class="btnBoardFirst" id="btnBoardFirst">Доска 1</button>
+            </li>
+            <li class="boardItem">
+                <button class="btnMenu btnBoard" class="btnBoardSecons" id="btnBoardSecons">Доска 2</button>
+            </li>
+            <li class="boardItem">
+                <button class="btnMenu btnBoard" class="btnBoardThird" id="btnBoardThird">Доска 3</button>
+            </li>
+        </ul>
+    </div>
+</div>
+    <script src="./script.js"></script>
+</body>
+</html>
