@@ -71,6 +71,16 @@ addToBoardBtnThirdElement.addEventListener("click", postBoardThird);
 
 
 
+  function getPhotos() {
+    runPinterestApplication();
+    images = JSON.parse(localStorage.getItem("photos")) || [];
+    const galleryElement = getElementByRef('gallery');
 
+    galleryElement.innerHTML = createCard(images);
+  }
+
+  getPhotos();
 });
+
+export let images;
 

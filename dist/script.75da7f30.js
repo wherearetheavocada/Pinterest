@@ -132,7 +132,7 @@ function createImage(_ref) {
     small = _ref.user.profile_image.small;
   return "<li class=\"galleryList\" id=".concat(id, ">\n    <div class=\"galleryItem\">\n        <img src=").concat(urls.full, " class=\"img\" id=\"img\"/>\n        <div class=\"cardButton\"></div>\n        <button type=\"button\" class=\"imageButton\"></button>\n    </div>\n    <div class=\"card\">\n        <img src=").concat(small, " class=\"avatarImg\" />\n        <p class=\"cardDescription\">").concat(alt_description, "</p>\n    </div>\n    </li>");
 }
-},{}],"modules/localStorage.js":[function(require,module,exports) {
+},{}],"modules/getPinterest.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -267,7 +267,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.images = void 0;
 var _createImage = _interopRequireDefault(require("./modules/createImage.js"));
-var _localStorage = _interopRequireWildcard(require("./modules/localStorage.js"));
+var _getPinterest = _interopRequireWildcard(require("./modules/getPinterest.js"));
 var _createElement = require("./modules/createElement.js");
 var _listEvent = _interopRequireWildcard(require("./modules/listEvent.js"));
 var _createCard = require("./modules/createCard.js");
@@ -313,7 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var addToBoardBtnThirdElement = (0, _createElement.getElementByRef)('addToBoardBtnThird');
   addToBoardBtnThirdElement.addEventListener("click", _listEvent.postBoardThird);
   function getPhotos() {
-    (0, _localStorage.runPinterestApplication)();
+    (0, _getPinterest.runPinterestApplication)();
     exports.images = images = JSON.parse(localStorage.getItem("photos")) || [];
     var galleryElement = (0, _createElement.getElementByRef)('gallery');
     galleryElement.innerHTML = (0, _createCard.createCard)(images);
@@ -321,7 +321,7 @@ document.addEventListener("DOMContentLoaded", function () {
   getPhotos();
 });
 var images;
-},{"./modules/createImage.js":"modules/createImage.js","./modules/localStorage.js":"modules/localStorage.js","./modules/createElement.js":"modules/createElement.js","./modules/listEvent.js":"modules/listEvent.js","./modules/createCard.js":"modules/createCard.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./modules/createImage.js":"modules/createImage.js","./modules/getPinterest.js":"modules/getPinterest.js","./modules/createElement.js":"modules/createElement.js","./modules/listEvent.js":"modules/listEvent.js","./modules/createCard.js":"modules/createCard.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -346,7 +346,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50078" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52865" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
