@@ -130,7 +130,7 @@ function createImage(_ref) {
     avatarImage = _ref.avatarImage,
     alt_description = _ref.alt_description,
     small = _ref.user.profile_image.small;
-  return "<li class=\"galleryList\" id=".concat(id, ">\n    <div class=\"galleryItem\">\n        <img src=").concat(urls.full, " class=\"img\" id=\"img\"/>\n        <div class=\"cardButton\"></div>\n        <button type=\"button\" class=\"imageButton\"></button>\n    </div>\n    <div class=\"card\">\n        <img src=").concat(small, " class=\"avatarImg\" />\n        <p class=\"cardDescription\">").concat(alt_description, "</p>\n    </div>\n    </li>");
+  return "<li class=\"galleryList\" id=".concat(id, ">\n    <div class=\"galleryItem\">\n        <img src=").concat(urls.full, " class=\"img\" id=\"img\"/>\n        <div class=\"cardButton\"></div>\n        <button type=\"button\" class=\"imageButton\"></button>\n        <svg class=\"svgBtn\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" aria-label=\"\" role=\"img\">\n        <path d=\"M12 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3M3 9c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm18 0c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z\"></path>\n        </svg>\n    </div>\n    <div class=\"card\">\n        <img src=").concat(small, " class=\"avatarImg\" />\n        <p class=\"cardDescription\">").concat(alt_description, "</p>\n    </div>\n    </li>");
 }
 },{}],"modules/getPinterest.js":[function(require,module,exports) {
 "use strict";
@@ -346,7 +346,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52865" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53151" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

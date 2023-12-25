@@ -26,8 +26,13 @@
     height: 50px;
     border:none;
     border-radius: 50px;
-    background: red ;
+    background: rgb(0, 0, 0) ;
     color: white;
+}
+
+.pinterest:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
 }
 
 #searchByTag{
@@ -50,6 +55,7 @@
     border-radius: 50px;
     background: red ;
     color: white;
+    opacity: .3s;
 }
 
 .btnMenu{
@@ -135,8 +141,6 @@ border-radius: 10px;
 
 
 .gallery{
-/* display: grid;
-grid-template-columns: repeat(6, 1fr); */
 gap:30px;
 padding: 0 30px;
 position: absolute;
@@ -147,16 +151,15 @@ background:whitesmoke;
 border-radius: 20px;
 padding: 20px;
 box-shadow: 10px 10px 20px #434040;
-
+break-inside:avoid;
 top: 0px;
 left: 0px;
-/* transform: translateX(59px) translateY(0px); */
 width: 236px;
 margin-bottom: 30px;
 }
 
 .galleryItem{
-
+position: relative;
 }
 
 .img{
@@ -164,9 +167,12 @@ width: 100%;
 }
 
 .imageButton{
+    position: absolute;
+    bottom: 10px;
+    right: 6px;
     width: 30px; 
     height: 30px;
-    background-color: #fffc; 
+    background-color: rgba(228, 222, 222, 0.8); 
      border-radius: 20%; 
      border: 1px solid black;
 }
@@ -174,9 +180,6 @@ width: 100%;
     background-color: rgb(218, 218, 218);
     }
 
-.cardButton{
-
-}
 .card{
 margin-top: 20px;
 font-weight: 500px;
@@ -190,8 +193,46 @@ gap:20px;
 border-radius: 50%;
 }
 
-.cardDescription{
-    
+
+
+
+
+/* header */
+.headerIcon{
+    display: flex;
+    justify-content: center;
+    height:48px;
+    width: 48px;
+    border-radius: 50%;
+}
+
+.headerSvg{
+    position: relative;
+    top:13px;
+    left:20px;
+    display: block;
+    color:red;
+    fill: currentColor;
+}
+
+.searchByTagSvg{
+    height:16px;
+    width:16px;
+    position: relative;
+    left:35px;
+    color:rgb(117, 116, 116);
+    fill: currentColor;
+}
+
+.btn:hover{
+    background: rgb(172, 40, 40);
 }
 
 
+.svgBtn{
+    width:15px;
+    height: 15px;
+    position: absolute;
+    bottom: 17px;
+    right: 13px;
+}
