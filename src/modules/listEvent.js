@@ -65,6 +65,9 @@ export function getBoardFirst() {
     // console.log('hello')
     // console.log(id)
 
+
+
+
     const imagesOnBoard = JSON.parse(localStorage.getItem('boardFirst'));
 console.log('hello')
     if (imagesOnBoard) {
@@ -73,9 +76,12 @@ console.log('hello')
       board.classList.add("show");
     } else {
       gallery.innerHTML = "";
-      noPins.innerHTML = `<p class="no-pins">You have no saved pins here :(</p>`;
+      noPins.innerHTML = '';
       board.classList.add("show");
     }
+
+
+
 
 }
 export function getBoardSecond() {}
