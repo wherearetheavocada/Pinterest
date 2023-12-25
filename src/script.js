@@ -2,8 +2,8 @@ import createImage from "./modules/createImage.js";
 import getPinterest, {
   runPinterestApplication,
 } from "./modules/getPinterest.js";
-import { createElement, getElementByRef } from "./modules/createElement.js";
-import listEvent from "./modules/listEvent.js";
+import { createElement, getElementByRef, getElementsByRef } from "./modules/createElement.js";
+import listEvent, { btnCancel } from "./modules/listEvent.js";
 import {
   searchByPhoto,
   chooseBoard,
@@ -14,7 +14,9 @@ import {
   complain,
   postBoardFirst,
   postBoardSecond,
-  postBoardThird
+  postBoardThird,
+  getMenuCard,
+  clickOnWin
 } from "./modules/listEvent.js";
 import { createCard } from "./modules/createCard.js";
 document.addEventListener("DOMContentLoaded", function () {
@@ -31,24 +33,53 @@ document.addEventListener("DOMContentLoaded", function () {
     addToBoardBtnSecond,
     addToBoardBtnThird,
     btnCancel,
-    btnSend
+    btnSend,
+    imageButton
   } = createElement;
 
 
+  function getPhotos() {
+    runPinterestApplication();
+    images = JSON.parse(localStorage.getItem("photos")) || [];
+    const galleryElement = getElementByRef('gallery');
+
+    galleryElement.innerHTML = createCard(images);
+  }
+
+  getPhotos();
+
+  const imageButtonElements = getElementsByRef('imageButton');
+
+  imageButtonElements.forEach(btn => {
+    btn.addEventListener("click", getMenuCard);
+  });
+
+const btnBoardFirstElements = getElementsByRef('btnBoardFirst');
+btnBoardFirstElements.forEach(btn => {
+  btn.addEventListener("click", getBoardFirst);
+})
+
+const btnBoardSecondElements = getElementsByRef('btnBoardSecond');
+btnBoardSecondElements.forEach(btn => {
+  btn.addEventListener("click", getBoardSecond);
+
+});
+
+const btnBoardThirdElements = getElementsByRef('btnBoardThird');
+btnBoardThirdElements.forEach(btn => {
+btn.addEventListener("click", getBoardThird);
+})
+
+
+
+});
+
+
 const searchByTagElement = getElementByRef('searchByTag');
-searchByTagElement.addEventListener("click", searchByPhoto);
+searchByTagElement.addEventListener("input", searchByPhoto);
 
-const btnElement = getElementByRef('btn');
-btnElement.addEventListener("click", chooseBoard);
-
-// const btnBoardFirstElement = getElementByRef('btnBoardFirst');
-// btnBoardFirstElement.addEventListener("click", getBoardFirst);
-
-// const btnBoardSecondElement = getElementByRef('btnBoardSecond');
-// btnBoardSecondElement.addEventListener("click", getBoardSecond);
-
-// const btnBoardThirdElement = getElementByRef('btnBoardThird');
-// btnBoardThirdElement.addEventListener("click", getBoardThird);
+const selectBoardBtnElement = getElementByRef('selectBoardBtn');
+selectBoardBtnElement.addEventListener("click", chooseBoard);
 
 const boardBntElement = getElementByRef('boardBnt');
 boardBntElement.addEventListener("click", addBord);
@@ -65,22 +96,13 @@ addToBoardBtnSecondElement.addEventListener("click", postBoardSecond);
 const addToBoardBtnThirdElement = getElementByRef('addToBoardBtnThird');
 addToBoardBtnThirdElement.addEventListener("click", postBoardThird);
 
+const btnCancelElement = getElementByRef('btnCancel');
+btnCancelElement.addEventListener("click", btnCancel);
+
+window.addEventListener('click', clickOnWin )
 
 
 
-
-
-
-  function getPhotos() {
-    runPinterestApplication();
-    images = JSON.parse(localStorage.getItem("photos")) || [];
-    const galleryElement = getElementByRef('gallery');
-
-    galleryElement.innerHTML = createCard(images);
-  }
-
-  getPhotos();
-});
 
 export let images;
 

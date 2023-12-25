@@ -130,7 +130,7 @@ function createImage(_ref) {
     avatarImage = _ref.avatarImage,
     alt_description = _ref.alt_description,
     small = _ref.user.profile_image.small;
-  return "<li class=\"galleryList\" id=".concat(id, ">\n    <div class=\"galleryItem\">\n        <img src=").concat(urls.full, " class=\"img\" id=\"img\"/>\n        <div class=\"cardButton\"></div>\n        <button type=\"button\" class=\"imageButton\"></button>\n        <svg class=\"svgBtn\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" aria-label=\"\" role=\"img\">\n        <path d=\"M12 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3M3 9c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm18 0c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z\"></path>\n        </svg>\n    </div>\n    <div class=\"card\">\n        <img src=").concat(small, " class=\"avatarImg\" />\n        <p class=\"cardDescription\">").concat(alt_description, "</p>\n    </div>\n    </li>");
+  return "<li class=\"galleryList\" id=".concat(id, ">\n    <div class=\"galleryItem\">\n        <img src=").concat(urls.full, " class=\"img\" id=\"img\"/>\n        <div class=\"cardButton\"></div>\n        <button type=\"button\" class=\"imageButton\"  id=").concat(id, ">\n            <svg class=\"svgBtn\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" aria-label=\"\" role=\"img\">\n            <path d=\"M12 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3M3 9c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm18 0c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z\"></path>\n            </svg>\n        </button>\n    </div>\n    <div class=\"card\">\n        <img src=").concat(small, " class=\"avatarImg\" />\n        <p class=\"cardDescription\">").concat(alt_description, "</p>\n    </div>\n    </li>");
 }
 },{}],"modules/getPinterest.js":[function(require,module,exports) {
 "use strict";
@@ -203,50 +203,32 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.createElement = void 0;
 exports.getElementByRef = getElementByRef;
+exports.getElementsByRef = getElementsByRef;
 var createElement = exports.createElement = {
   gallery: '.gallery',
   searchByTag: "#searchByTag",
-  btn: ".btn",
+  selectBoardBtn: ".selectBoardBtn",
+  board: ".board",
   btnBoardFirst: ".btnBoardFirst",
   btnBoardSecond: ".btnBoardSecond",
   btnBoardThird: ".btnBoardThird",
   boardBnt: ".boardBnt",
+  complaint: "complaint",
   complainBtn: ".complainBtn",
   addToBoardBtnFirst: ".addToBoardBtnFirst",
   addToBoardBtnSecond: ".addToBoardBtnSecond",
   addToBoardBtnThird: ".addToBoardBtnThird",
   btnCancel: ".btnCancel",
-  btnSend: ".btnSend"
+  btnSend: ".btnSend",
+  imageButton: ".imageButton",
+  noPins: ".noPins"
 };
 function getElementByRef(ref) {
   return document.querySelector(createElement[ref]);
 }
-},{}],"modules/listEvent.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.addBord = addBord;
-exports.chooseBoard = chooseBoard;
-exports.complain = complain;
-exports.getBoardFirst = getBoardFirst;
-exports.getBoardSecond = getBoardSecond;
-exports.getBoardThird = getBoardThird;
-exports.postBoardFirst = postBoardFirst;
-exports.postBoardSecond = postBoardSecond;
-exports.postBoardThird = postBoardThird;
-exports.searchByPhoto = searchByPhoto;
-function searchByPhoto() {}
-function chooseBoard() {}
-function getBoardFirst() {}
-function getBoardSecond() {}
-function getBoardThird() {}
-function addBord() {}
-function complain() {}
-function postBoardFirst() {}
-function postBoardSecond() {}
-function postBoardThird() {}
+function getElementsByRef(ref) {
+  return document.querySelectorAll(createElement[ref]);
+}
 },{}],"modules/createCard.js":[function(require,module,exports) {
 "use strict";
 
@@ -259,7 +241,151 @@ function createCard(data) {
   console.log(data);
   return data.map(_createImage.createImage).join(' ');
 }
-},{"./createImage":"modules/createImage.js"}],"script.js":[function(require,module,exports) {
+},{"./createImage":"modules/createImage.js"}],"modules/listEvent.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.addBord = addBord;
+exports.btnCancel = btnCancel;
+exports.chooseBoard = chooseBoard;
+exports.clickOnWin = clickOnWin;
+exports.complain = complain;
+exports.getBoardFirst = getBoardFirst;
+exports.getBoardSecond = getBoardSecond;
+exports.getBoardThird = getBoardThird;
+exports.getMenuCard = getMenuCard;
+exports.postBoardFirst = postBoardFirst;
+exports.postBoardSecond = postBoardSecond;
+exports.postBoardThird = postBoardThird;
+exports.searchByPhoto = searchByPhoto;
+var _createElement = require("./createElement.js");
+var _script = require("../script.js");
+var _createCard = _interopRequireDefault(require("./createCard.js"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function searchByPhoto(event) {
+  document.addEventListener('DOMContentLoaded', function () {
+    var input = document.getElementById('serch-input');
+    input.addEventListener("input", function (event) {
+      //...
+    });
+  });
+  window.onload = function () {
+    var input = document.querySelector('#input');
+    input.oninput = function () {
+      var value = this.value.trim();
+      var list = document.querySelectorAll({
+        alt_description: alt_description
+      });
+      if (value != '') {
+        list.forEach(function (elem) {
+          if (elem.innerText.search(value) == -1) {
+            elem.classList.add('hide');
+          }
+        });
+      } else {
+        list.forEach(function (elem) {
+          elem.classList.remove('hide');
+        });
+      }
+      console.log(this.value);
+    };
+  };
+}
+function chooseBoard() {
+  document.getElementById("board").classList.toggle("show");
+
+  // createElement.board.classList.toggle("show");
+  //вернёт только карточки первой доски
+  // return getBoardFirst();
+
+  //   carts = getBoardFirst()
+  //   const galleryElement = getElementByRef('gallery');
+
+  //   galleryElement.innerHTML = createCard(carts);
+
+  //   // when try report
+  //   localStorage.setItem('selected-card-id', '12345');
+
+  //   // in send
+  //   const id = localStorage.getItem('selected-cart-id');
+
+  //   const card = document.getElementById(id);
+  //   card.img.remove();
+}
+function getBoardFirst() {
+  // const allCarts = JSON.parse(localStorage.getItem(photos));
+  // const boardCarts = JSON.parse(localStorage.getItem("board_1")) // поменять на board_ + ид доски
+  // return allCarts.filter((cart) => boardCarts.includes(cart.id));
+  // const id = localStorage.getItem('boardFirst')
+  // console.log('hello')
+  // console.log(id)
+
+  var imagesOnBoard = JSON.parse(localStorage.getItem('boardFirst'));
+  console.log('hello');
+  if (imagesOnBoard) {
+    noPins.innerHTML = "";
+    gallery.innerHTML = createList(imagesOnBoard);
+    board.classList.add("show");
+  } else {
+    gallery.innerHTML = "";
+    noPins.innerHTML = "<p class=\"no-pins\">You have no saved pins here :(</p>";
+    board.classList.add("show");
+  }
+}
+function getBoardSecond() {}
+function getBoardThird() {}
+function addBord() {
+  document.getElementById("addToBoard").classList.toggle("show");
+}
+function complain() {
+  document.getElementById("complaint").classList.toggle("show");
+}
+function postBoard(boardNum) {}
+function postBoardFirst(boardNum) {
+  // const id = localStorage.getItem('cart-id');
+
+  // const boardStr = localStorage.getItem('board_' + boardNum); // "[1,2,3]"
+  // const board = JSON.parse(boardStr); // [1,2,3]
+
+  // // TODO: Проверить если доски не сущесвует создать
+
+  // board.append(id); // [1,2,3,id]
+
+  // localStorage.setItem('board_' + boardNum, board); // [1,2,3,id] => board_
+
+  // //для получения карточки
+  // // очистить все карточки 
+  // // передать через localStorage карточки
+
+  var id = localStorage.getItem('cart-id');
+  localStorage.setItem('boardFirst', id);
+}
+function postBoardSecond() {}
+function postBoardThird() {}
+function getMenuCard(event, id) {
+  console.log(event);
+  var menu = document.getElementById("menu");
+  menu.classList.toggle("show1");
+  menu.style.position = 'absolute';
+  menu.style.left = event.x - 110 + 'px';
+  menu.style.top = event.y + 20 + 'px';
+  var target = event.target;
+  localStorage.setItem('cart-id', target.id);
+}
+function btnCancel() {
+  var complaint = document.getElementById('complaint');
+  complaint.classList.toggle("show");
+}
+function clickOnWin(event) {
+  // if(
+  // !event.target.matches('.menu', '.addToBoard', 'complaint', 'board')
+  // ){
+  //     createElement.complaint.classList.add("show");
+  // }
+}
+},{"./createElement.js":"modules/createElement.js","../script.js":"script.js","./createCard.js":"modules/createCard.js"}],"script.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -287,31 +413,8 @@ document.addEventListener("DOMContentLoaded", function () {
     addToBoardBtnSecond = _createElement.createElement.addToBoardBtnSecond,
     addToBoardBtnThird = _createElement.createElement.addToBoardBtnThird,
     btnCancel = _createElement.createElement.btnCancel,
-    btnSend = _createElement.createElement.btnSend;
-  var searchByTagElement = (0, _createElement.getElementByRef)('searchByTag');
-  searchByTagElement.addEventListener("click", _listEvent.searchByPhoto);
-  var btnElement = (0, _createElement.getElementByRef)('btn');
-  btnElement.addEventListener("click", _listEvent.chooseBoard);
-
-  // const btnBoardFirstElement = getElementByRef('btnBoardFirst');
-  // btnBoardFirstElement.addEventListener("click", getBoardFirst);
-
-  // const btnBoardSecondElement = getElementByRef('btnBoardSecond');
-  // btnBoardSecondElement.addEventListener("click", getBoardSecond);
-
-  // const btnBoardThirdElement = getElementByRef('btnBoardThird');
-  // btnBoardThirdElement.addEventListener("click", getBoardThird);
-
-  var boardBntElement = (0, _createElement.getElementByRef)('boardBnt');
-  boardBntElement.addEventListener("click", _listEvent.addBord);
-  var complainBtnElement = (0, _createElement.getElementByRef)('complainBtn');
-  complainBtnElement.addEventListener("click", _listEvent.complain);
-  var addToBoardBtnFirstElement = (0, _createElement.getElementByRef)('addToBoardBtnFirst');
-  addToBoardBtnFirstElement.addEventListener("click", _listEvent.postBoardFirst);
-  var addToBoardBtnSecondElement = (0, _createElement.getElementByRef)('addToBoardBtnSecond');
-  addToBoardBtnSecondElement.addEventListener("click", _listEvent.postBoardSecond);
-  var addToBoardBtnThirdElement = (0, _createElement.getElementByRef)('addToBoardBtnThird');
-  addToBoardBtnThirdElement.addEventListener("click", _listEvent.postBoardThird);
+    btnSend = _createElement.createElement.btnSend,
+    imageButton = _createElement.createElement.imageButton;
   function getPhotos() {
     (0, _getPinterest.runPinterestApplication)();
     exports.images = images = JSON.parse(localStorage.getItem("photos")) || [];
@@ -319,7 +422,40 @@ document.addEventListener("DOMContentLoaded", function () {
     galleryElement.innerHTML = (0, _createCard.createCard)(images);
   }
   getPhotos();
+  var imageButtonElements = (0, _createElement.getElementsByRef)('imageButton');
+  imageButtonElements.forEach(function (btn) {
+    btn.addEventListener("click", _listEvent.getMenuCard);
+  });
+  var btnBoardFirstElements = (0, _createElement.getElementsByRef)('btnBoardFirst');
+  btnBoardFirstElements.forEach(function (btn) {
+    btn.addEventListener("click", _listEvent.getBoardFirst);
+  });
+  var btnBoardSecondElements = (0, _createElement.getElementsByRef)('btnBoardSecond');
+  btnBoardSecondElements.forEach(function (btn) {
+    btn.addEventListener("click", _listEvent.getBoardSecond);
+  });
+  var btnBoardThirdElements = (0, _createElement.getElementsByRef)('btnBoardThird');
+  btnBoardThirdElements.forEach(function (btn) {
+    btn.addEventListener("click", _listEvent.getBoardThird);
+  });
 });
+var searchByTagElement = (0, _createElement.getElementByRef)('searchByTag');
+searchByTagElement.addEventListener("input", _listEvent.searchByPhoto);
+var selectBoardBtnElement = (0, _createElement.getElementByRef)('selectBoardBtn');
+selectBoardBtnElement.addEventListener("click", _listEvent.chooseBoard);
+var boardBntElement = (0, _createElement.getElementByRef)('boardBnt');
+boardBntElement.addEventListener("click", _listEvent.addBord);
+var complainBtnElement = (0, _createElement.getElementByRef)('complainBtn');
+complainBtnElement.addEventListener("click", _listEvent.complain);
+var addToBoardBtnFirstElement = (0, _createElement.getElementByRef)('addToBoardBtnFirst');
+addToBoardBtnFirstElement.addEventListener("click", _listEvent.postBoardFirst);
+var addToBoardBtnSecondElement = (0, _createElement.getElementByRef)('addToBoardBtnSecond');
+addToBoardBtnSecondElement.addEventListener("click", _listEvent.postBoardSecond);
+var addToBoardBtnThirdElement = (0, _createElement.getElementByRef)('addToBoardBtnThird');
+addToBoardBtnThirdElement.addEventListener("click", _listEvent.postBoardThird);
+var btnCancelElement = (0, _createElement.getElementByRef)('btnCancel');
+btnCancelElement.addEventListener("click", _listEvent.btnCancel);
+window.addEventListener('click', _listEvent.clickOnWin);
 var images;
 },{"./modules/createImage.js":"modules/createImage.js","./modules/getPinterest.js":"modules/getPinterest.js","./modules/createElement.js":"modules/createElement.js","./modules/listEvent.js":"modules/listEvent.js","./modules/createCard.js":"modules/createCard.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -346,7 +482,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53151" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52252" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
