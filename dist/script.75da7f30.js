@@ -130,7 +130,7 @@ function createImage(_ref) {
     avatarImage = _ref.avatarImage,
     alt_description = _ref.alt_description,
     small = _ref.user.profile_image.small;
-  return "<li class=\"galleryList\" id=".concat(id, ">\n    <div class=\"galleryItem\">\n        <img src=").concat(urls.full, " class=\"img\" id=\"img\"/>\n        <div class=\"cardButton\"></div>\n        <button type=\"button\" class=\"imageButton\"  id=").concat(id, ">\n            <svg class=\"svgBtn\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" aria-label=\"\" role=\"img\">\n            <path d=\"M12 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3M3 9c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm18 0c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z\"></path>\n            </svg>\n        </button>\n    </div>\n    <div class=\"card\">\n        <img src=").concat(small, " class=\"avatarImg\" />\n        <p class=\"cardDescription\">").concat(alt_description, "</p>\n    </div>\n    </li>");
+  return "<li class=\"galleryList\" id=".concat(id, ">\n    <div class=\"galleryItem\">\n        <img src=").concat(urls.small, " class=\"img\" id=\"img\"/>\n        <div class=\"cardButton\"></div>\n        <button type=\"button\" class=\"imageButton\"  id=").concat(id, ">\n            <svg class=\"svgBtn\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" aria-label=\"\" role=\"img\">\n            <path d=\"M12 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3M3 9c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm18 0c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z\"></path>\n            </svg>\n        </button>\n    </div>\n    <div class=\"card\">\n        <img src=").concat(small, " class=\"avatarImg\" />\n        <p class=\"cardDescription\">").concat(alt_description, "</p>\n    </div>\n    </li>");
 }
 },{}],"modules/getPinterest.js":[function(require,module,exports) {
 "use strict";
@@ -205,7 +205,7 @@ exports.createElement = void 0;
 exports.getElementByRef = getElementByRef;
 exports.getElementsByRef = getElementsByRef;
 var createElement = exports.createElement = {
-  gallery: '.gallery',
+  gallery: ".gallery",
   searchByTag: "#searchByTag",
   selectBoardBtn: ".selectBoardBtn",
   board: ".board",
@@ -221,7 +221,11 @@ var createElement = exports.createElement = {
   btnCancel: ".btnCancel",
   btnSend: ".btnSend",
   imageButton: ".imageButton",
-  noPins: ".noPins"
+  noPins: ".noPins",
+  closeMenu: ".closeMenu",
+  menu: ".menu",
+  addToBoard: ".addToBoard ",
+  cardDescription: ".cardDescription"
 };
 function getElementByRef(ref) {
   return document.querySelector(createElement[ref]);
@@ -262,57 +266,23 @@ exports.postBoardThird = postBoardThird;
 exports.searchByPhoto = searchByPhoto;
 var _createElement = require("./createElement.js");
 var _script = require("../script.js");
-var _createCard = _interopRequireDefault(require("./createCard.js"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _createImage = require("./createImage");
+var _createCard = require("./createCard.js");
 function searchByPhoto(event) {
-  document.addEventListener('DOMContentLoaded', function () {
-    var input = document.getElementById('serch-input');
-    input.addEventListener("input", function (event) {
-      //...
-    });
+  console.log(event.target.value);
+  var currentTarget = event.currentTarget;
+  var filterValue = currentTarget.value.toLowerCase();
+  var filteredImages = _script.images.filter(function (_ref) {
+    var alt_description = _ref.alt_description;
+    return alt_description.toLowerCase().includes(filterValue);
   });
-  window.onload = function () {
-    var input = document.querySelector('#input');
-    input.oninput = function () {
-      var value = this.value.trim();
-      var list = document.querySelectorAll({
-        alt_description: alt_description
-      });
-      if (value != '') {
-        list.forEach(function (elem) {
-          if (elem.innerText.search(value) == -1) {
-            elem.classList.add('hide');
-          }
-        });
-      } else {
-        list.forEach(function (elem) {
-          elem.classList.remove('hide');
-        });
-      }
-      console.log(this.value);
-    };
-  };
+  console.log(_createElement.createElement, _createElement.createElement.gallery);
+  var gallery = document.querySelector(_createElement.createElement.gallery);
+  gallery.innerHTML = (0, _createCard.createCard)(filteredImages);
 }
-function chooseBoard() {
+function chooseBoard(event) {
   document.getElementById("board").classList.toggle("show");
-
-  // createElement.board.classList.toggle("show");
-  //вернёт только карточки первой доски
-  // return getBoardFirst();
-
-  //   carts = getBoardFirst()
-  //   const galleryElement = getElementByRef('gallery');
-
-  //   galleryElement.innerHTML = createCard(carts);
-
-  //   // when try report
-  //   localStorage.setItem('selected-card-id', '12345');
-
-  //   // in send
-  //   const id = localStorage.getItem('selected-cart-id');
-
-  //   const card = document.getElementById(id);
-  //   card.img.remove();
+  event.stopPropagation();
 }
 function getBoardFirst() {
   // const allCarts = JSON.parse(localStorage.getItem(photos));
@@ -321,26 +291,27 @@ function getBoardFirst() {
   // const id = localStorage.getItem('boardFirst')
   // console.log('hello')
   // console.log(id)
-
-  var imagesOnBoard = JSON.parse(localStorage.getItem('boardFirst'));
-  console.log('hello');
-  if (imagesOnBoard) {
-    noPins.innerHTML = "";
-    gallery.innerHTML = createList(imagesOnBoard);
-    board.classList.add("show");
-  } else {
-    gallery.innerHTML = "";
-    noPins.innerHTML = "<p class=\"no-pins\">You have no saved pins here :(</p>";
-    board.classList.add("show");
-  }
+  //     const imagesOnBoard = JSON.parse(localStorage.getItem('boardFirst'));
+  // console.log('hello')
+  //     if (imagesOnBoard) {
+  //       noPins.innerHTML = "";
+  //       gallery.innerHTML = createList(imagesOnBoard);
+  //       board.classList.add("show");
+  //     } else {
+  //       gallery.innerHTML = "";
+  //       noPins.innerHTML = '';
+  //       board.classList.add("show");
+  //     }
 }
 function getBoardSecond() {}
 function getBoardThird() {}
-function addBord() {
+function addBord(event) {
   document.getElementById("addToBoard").classList.toggle("show");
+  event.stopPropagation();
 }
-function complain() {
+function complain(event) {
   document.getElementById("complaint").classList.toggle("show");
+  event.stopPropagation();
 }
 function postBoard(boardNum) {}
 function postBoardFirst(boardNum) {
@@ -356,36 +327,43 @@ function postBoardFirst(boardNum) {
   // localStorage.setItem('board_' + boardNum, board); // [1,2,3,id] => board_
 
   // //для получения карточки
-  // // очистить все карточки 
+  // // очистить все карточки
   // // передать через localStorage карточки
 
-  var id = localStorage.getItem('cart-id');
-  localStorage.setItem('boardFirst', id);
+  var id = localStorage.getItem("cart-id");
+  localStorage.setItem("boardFirst", id);
 }
 function postBoardSecond() {}
 function postBoardThird() {}
 function getMenuCard(event, id) {
   console.log(event);
   var menu = document.getElementById("menu");
-  menu.classList.toggle("show1");
-  menu.style.position = 'absolute';
-  menu.style.left = event.x - 110 + 'px';
-  menu.style.top = event.y + 20 + 'px';
+  menu.classList.add("show");
+  menu.style.position = "absolute";
+  menu.style.left = event.pageX - 110 + "px";
+  menu.style.top = event.pageY + 20 + "px";
   var target = event.target;
-  localStorage.setItem('cart-id', target.id);
+  localStorage.setItem("cart-id", target.id);
+  event.stopPropagation();
 }
 function btnCancel() {
-  var complaint = document.getElementById('complaint');
+  var complaint = document.getElementById("complaint");
   complaint.classList.toggle("show");
 }
 function clickOnWin(event) {
-  // if(
-  // !event.target.matches('.menu', '.addToBoard', 'complaint', 'board')
-  // ){
-  //     createElement.complaint.classList.add("show");
+  var menu = (0, _createElement.getElementByRef)("menu");
+  var board = (0, _createElement.getElementByRef)("board");
+  if (menu || board || addToBoard || complaint) {
+    menu.classList.remove("show");
+    board.classList.remove("show");
+  }
+  // const closeMenu = getElementsByRef("closeMenu");
+  // if (closeMenu) {
+  //     closeMenu.forEach((e) => e.remove("show"));
+  //     console.log("click");
   // }
 }
-},{"./createElement.js":"modules/createElement.js","../script.js":"script.js","./createCard.js":"modules/createCard.js"}],"script.js":[function(require,module,exports) {
+},{"./createElement.js":"modules/createElement.js","../script.js":"script.js","./createImage":"modules/createImage.js","./createCard.js":"modules/createCard.js"}],"script.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -482,7 +460,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52252" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52910" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

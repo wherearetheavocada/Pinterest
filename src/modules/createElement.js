@@ -1,6 +1,5 @@
-
 export const createElement = {
-    gallery: '.gallery',
+    gallery: ".gallery",
     searchByTag: "#searchByTag",
     selectBoardBtn: ".selectBoardBtn",
     board: ".board",
@@ -14,19 +13,21 @@ export const createElement = {
     addToBoardBtnFirst: ".addToBoardBtnFirst",
     addToBoardBtnSecond: ".addToBoardBtnSecond",
     addToBoardBtnThird: ".addToBoardBtnThird",
-    btnCancel:".btnCancel",
+    btnCancel: ".btnCancel",
     btnSend: ".btnSend",
     imageButton: ".imageButton",
-    noPins: ".noPins"
-}
+    noPins: ".noPins",
+    closeMenu: ".closeMenu",
+    menu: ".menu",
+    addToBoard: ".addToBoard ",
 
-export function getElementByRef(ref)
-{
+    cardDescription: ".cardDescription",
+};
+
+export function getElementByRef(ref) {
     return document.querySelector(createElement[ref]);
 }
 
-export function getElementsByRef(ref)
-{
+export function getElementsByRef(ref) {
     return document.querySelectorAll(createElement[ref]);
 }
-

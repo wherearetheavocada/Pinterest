@@ -1,7 +1,15 @@
-export function createImage({id,urls,avatarImage,alt_description, user: {profile_image: {small},}}){
+export function createImage({
+    id,
+    urls,
+    avatarImage,
+    alt_description,
+    user: {
+        profile_image: { small },
+    },
+}) {
     return `<li class="galleryList" id=${id}>
     <div class="galleryItem">
-        <img src=${urls.full} class="img" id="img"/>
+        <img src=${urls.small} class="img" id="img"/>
         <div class="cardButton"></div>
         <button type="button" class="imageButton"  id=${id}>
             <svg class="svgBtn" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img">
@@ -13,5 +21,5 @@ export function createImage({id,urls,avatarImage,alt_description, user: {profile
         <img src=${small} class="avatarImg" />
         <p class="cardDescription">${alt_description}</p>
     </div>
-    </li>`
+    </li>`;
 }
