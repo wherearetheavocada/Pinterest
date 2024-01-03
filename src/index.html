@@ -22,7 +22,8 @@
                     ></path>
                 </svg>
             </div>
-            <a href="#" class="pinterest">Главная</a>
+            <a href="#" id="pinterest-home-link">Главная</a>
+            <div class="searchByTag"></div>
             <svg
                 class="searchByTagSvg"
                 viewBox="0 0 24 24"
@@ -40,8 +41,8 @@
         </div>
         <div class="root">
             <div class="main">
-                <ul class="gallery"></ul>
-                <div class="noPins"></div>
+                <ul class="gallery" id="gallery"></ul>
+                <div class="noPins" id="noPins"></div>
             </div>
             <div class="menu closeMenu" id="menu">
                 <ul class="menuList">
@@ -85,18 +86,33 @@
                     </ul>
                 </div>
             </div>
-            <div class="complaint closeMenu" id="complaint">
+            <div class="complaint" id="complaint">
                 <h1 class="complaintPin">Пожаловаться</h1>
                 <label class="complaintItem">
-                    <input type="radio" name="complain" value="spam" />
+                    <input
+                        type="radio"
+                        id="myCheckbox"
+                        name="complain"
+                        value="spam"
+                    />
                     Неприличное фото
                 </label>
                 <label class="complaintItem">
-                    <input type="radio" name="complain" value="spam" />
+                    <input
+                        type="radio"
+                        id="myCheckbox"
+                        name="complain"
+                        value="spam"
+                    />
                     Оскорбление
                 </label>
                 <label class="complaintItem">
-                    <input type="radio" name="complain" value="spam" />
+                    <input
+                        type="radio"
+                        id="myCheckbox"
+                        name="complain"
+                        value="spam"
+                    />
                     Опасный товар
                 </label>
                 <div class="buttonСomplaint">
@@ -118,8 +134,8 @@
                     <li class="boardItem">
                         <button
                             class="btnMenu btnBoard"
-                            class="btnBoardSecons"
-                            id="btnBoardSecons"
+                            class="btnBoardSecond"
+                            id="btnBoardSecond"
                         >
                             Доска 2
                         </button>

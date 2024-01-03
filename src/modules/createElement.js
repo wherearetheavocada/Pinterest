@@ -3,10 +3,9 @@ export const createElement = {
     searchByTag: "#searchByTag",
     selectBoardBtn: ".selectBoardBtn",
     board: ".board",
-
-    btnBoardFirst: ".btnBoardFirst",
-    btnBoardSecond: ".btnBoardSecond",
-    btnBoardThird: ".btnBoardThird",
+    btnBoardFirst: "#btnBoardFirst",
+    btnBoardSecond: "#btnBoardSecond",
+    btnBoardThird: "#btnBoardThird",
     boardBnt: ".boardBnt",
     complaint: "complaint",
     complainBtn: ".complainBtn",
@@ -20,8 +19,9 @@ export const createElement = {
     closeMenu: ".closeMenu",
     menu: ".menu",
     addToBoard: ".addToBoard ",
-
     cardDescription: ".cardDescription",
+    homeLink: "#pinterest-home-link",
+    galleryList: ".galleryList",
 };
 
 export function getElementByRef(ref) {

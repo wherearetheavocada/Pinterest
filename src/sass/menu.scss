@@ -1,54 +1,153 @@
 .board {
-  width: 150px;
-  padding: 10px;
-  position: absolute;
-  top: 78px;
-  right: 17px;
-  border-radius: 10px;
-  background: white;
-  box-shadow: 0 0 8px #0000001a;
+    width: 150px;
+    padding: 10px;
+    position: absolute;
+    top: 78px;
+    right: 17px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 0 8px #0000001a;
 }
 
 .menu {
-  width: 150px;
-  padding: 10px;
-  position: absolute;
-  top: 80px;
-  left: 172px;
-  border-radius: 10px;
-  background: white;
-  box-shadow: 0 0 8px #0000001a;
+    width: 150px;
+    padding: 10px;
+    position: absolute;
+    top: 80px;
+    left: 172px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 0 8px #0000001a;
 }
 .addToBoard {
-  width: 150px;
-  padding: 10px;
-  border-radius: 10px;
-  position: absolute;
-  top: 20px;
-  right: 162px;
-  background: white;
-  box-shadow: 0 0 8px #0000001a;
+    width: 150px;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 20px;
+    right: 162px;
+    background: white;
+    box-shadow: 0 0 8px #0000001a;
 }
 
 .complaint {
-  padding: 35px;
-  border-radius: 10px;
-  position: absolute;
-  bottom: 350px;
-  left: 37%;
-  background: white;
-  box-shadow: 0 0 8px #0000001a;
+    padding: 35px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 350px;
+    left: 37%;
+    background: white;
+    box-shadow: 0 0 8px #0000001a;
 }
 
 .complaintPin {
-  text-align: center;
-  font-size: 35px;
-  padding-bottom: 30px;
+    text-align: center;
+    font-size: 35px;
+    padding-bottom: 30px;
 }
 
 .complaintItem {
-  display: flex;
-  justify-content: flex-start;
-  padding-bottom: 30px;
-  gap: 10px;
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 30px;
+    gap: 10px;
+}
+
+.complaintItem {
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 30px;
+    gap: 10px;
+}
+
+.gallery {
+    gap: 30px;
+    padding: 0 30px;
+    position: absolute;
+    columns: 7;
+}
+.galleryList {
+    background: whitesmoke;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 10px 10px 20px #434040;
+    break-inside: avoid;
+    top: 0px;
+    left: 0px;
+    margin-bottom: 30px;
+}
+
+.galleryItem {
+    position: relative;
+}
+.galleryList:hover .imageButton {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+.galleryList:hover {
+    background: #c9c8c8;
+    transition: 0.3s;
+}
+
+.card {
+    margin-top: 20px;
+    font-weight: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.avatarImg {
+    border-radius: 50%;
+}
+
+.headerIcon {
+    display: flex;
+    justify-content: center;
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+}
+
+.headerSvg {
+    position: relative;
+    top: 13px;
+    left: 20px;
+    display: block;
+    color: red;
+    fill: currentColor;
+}
+
+.noPins {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+}
+.no-pins {
+    font-size: 50px;
+    padding: 0 50px;
+    border-radius: 50%;
+    background-color: rgb(228, 228, 228);
+    color: red;
+}
+.searchByTagSvg {
+    height: 16px;
+    width: 16px;
+    position: relative;
+    left: 35px;
+    color: rgb(117, 116, 116);
+    fill: currentColor;
+}
+.show {
+    display: block;
+}
+.show1 {
+    display: block;
+}
+
+.hide {
+    display: block;
 }
