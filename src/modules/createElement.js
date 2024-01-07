@@ -22,6 +22,7 @@ export const createElement = {
     cardDescription: ".cardDescription",
     homeLink: "#pinterest-home-link",
     galleryList: ".galleryList",
+    btnBoard: ".btnBoard",
 };
 
 export function getElementByRef(ref) {

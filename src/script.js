@@ -7,7 +7,11 @@ import {
     getElementByRef,
     getElementsByRef,
 } from "./modules/createElement.js";
-import listEvent, { btnCancel } from "./modules/listEvent.js";
+import listEvent, {
+    ActiveBoard,
+    btnCancel,
+    updateBoardCards,
+} from "./modules/listEvent.js";
 import {
     searchByPhoto,
     chooseBoard,
@@ -61,6 +65,18 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.addEventListener("click", getMenuCard);
     });
 
+    const btnBoards = getElementsByRef("btnBoard");
+    btnBoards.forEach((btn) => {
+        btn.addEventListener("click", function (event) {
+            const { target } = event;
+
+            const boardId = parseInt(target.dataset.board); // need add attribute data-board to buttons
+            console.log(target, boardId);
+            ActiveBoard.set(boardId);
+            updateBoardCards();
+        });
+    });
+
     const buttonBoardFirst = getElementsByRef("btnBoardFirst");
     buttonBoardFirst.forEach((btn) => {
         btn.addEventListener("click", getBoardFirst);
@@ -78,7 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const homeLink = getElementByRef("homeLink");
     homeLink.addEventListener("click", () => {
-        renderPhotos();
+        ActiveBoard.set(0);
+        renderPhotos(); // change to updateBoardCards
 
         document.getElementById("noPins").textContent = "";
     });

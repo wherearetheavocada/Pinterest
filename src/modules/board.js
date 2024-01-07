@@ -1,22 +1,25 @@
 import { createElement, getElementByRef } from "./createElement";
 import { createCardsById } from "./createCard";
-import { noConflict } from "jquery";
+import { ActiveBoard } from "./listEvent";
 
-export function getAllBoards(data) {
-    const board = localStorage.getItem(data);
+export function getAllBoards() {
+    // rename to setBoardData / update / apply
+    const board = ActiveBoard.getBoardStorage();
+
     document.getElementById("noPins").textContent = "";
     if (board == null) {
         const noPinsEl = getElementByRef("noPins");
         noPinsEl.innerHTML = `<p class="no-pins" id="no-pins">Ваша доска пустая!(</p>`;
         gallery.innerHTML = "";
     } else {
-        const cards = localStorage.getItem(data).split(",");
+        const cards = board.split(",");
         const gallery = document.querySelector(createElement.gallery);
         gallery.innerHTML = createCardsById(cards);
     }
 }
 
 export function postAllBoards(data) {
+    // postBoardCard
     const id = localStorage.getItem("cart-id");
     const board = localStorage.getItem(data);
     if (board == null) {

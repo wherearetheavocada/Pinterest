@@ -7,6 +7,7 @@ import { images } from "../script.js";
 import { createImage } from "./createImage";
 import { createCard, createCardsById } from "./createCard.js";
 import { getAllBoards, postAllBoards } from "./board.js";
+import { Exception } from "sass";
 
 export function searchByPhoto(event) {
     const { target } = event;
@@ -23,6 +24,11 @@ export function chooseBoard(event) {
     document.getElementById("board").classList.toggle("show");
     event.stopPropagation();
 }
+
+export function updateBoardCards() {
+    getAllBoards();
+}
+
 export function getBoardFirst() {
     const cards = "boardFirst";
     getAllBoards(cards);
@@ -94,5 +100,33 @@ export function clickOnWin(event) {
     if (closeMenuList) {
         closeMenuList.forEach((menu) => menu.classList.remove("show"));
         console.log("click");
+    }
+}
+
+export class ActiveBoard {
+    static set(id) {
+        localStorage.setItem("active-board", id);
+    }
+    static getId() {
+        return localStorage.getItem("active-board") ?? 0;
+    }
+    static getBoardName() {
+        const id = this.getId();
+        switch (id) {
+            case 0:
+                return "photos"; // rename to board-cards
+            case 1:
+                return "boardFirst"; // rename to board-cards.1
+            case 2:
+                return "boardSecond"; // rename to board-cards.2
+            case 3:
+                return "boardThird"; // rename to board-cards.3
+            default:
+                throw Exception("Доска с таким id не найдена");
+        }
+    }
+    static getBoardStorage() {
+        console.log(this.getBoardName());
+        return localStorage.getItem(this.getBoardName());
     }
 }
