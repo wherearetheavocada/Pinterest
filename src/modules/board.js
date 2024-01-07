@@ -1,20 +1,21 @@
 import { createElement, getElementByRef } from "./createElement";
 import { createCardsById } from "./createCard";
 import { ActiveBoard } from "./listEvent";
+import { createImage } from "./createImage";
 
 export function getAllBoards() {
     // rename to setBoardData / update / apply
-    const board = ActiveBoard.getBoardStorage();
+    const boardCards = ActiveBoard.getBoardCards();
 
     document.getElementById("noPins").textContent = "";
-    if (board == null) {
+    if (boardCards == null) {
         const noPinsEl = getElementByRef("noPins");
         noPinsEl.innerHTML = `<p class="no-pins" id="no-pins">Ваша доска пустая!(</p>`;
         gallery.innerHTML = "";
     } else {
-        const cards = board.split(",");
         const gallery = document.querySelector(createElement.gallery);
-        gallery.innerHTML = createCardsById(cards);
+
+        gallery.innerHTML = boardCards.map(createImage).join(" ");
     }
 }
 

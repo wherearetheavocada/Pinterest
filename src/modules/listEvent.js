@@ -9,17 +9,16 @@ import { createCard, createCardsById } from "./createCard.js";
 import { getAllBoards, postAllBoards } from "./board.js";
 import { Exception } from "sass";
 
-export function searchByPhoto(event) {
-    // searchByText
+export function searchByText(event) {
     const { target } = event;
     const value = target.value.toLowerCase();
 
-    const cards = ActiveBoard.getBoardStorage();
+    const cards = ActiveBoard.getBoardCards();
 
     const filtImages = cards.filter(({ alt_description }) =>
         alt_description.toLowerCase().includes(value)
     );
-    console.log(createElement, createElement.gallery);
+
     const gallery = document.querySelector(createElement.gallery);
     gallery.innerHTML = createCard(filtImages);
 }
@@ -33,19 +32,19 @@ export function updateBoardCards() {
     getAllBoards();
 }
 
-// export function getBoardFirst() {
-//     const cards = "boardFirst";
-//     getAllBoards(cards);
-// }
+export function recordingBoardCards(boardId) {
+    if (boardId == "1") {
+        const board = "board-cards.1";
+        postAllBoards(board);
+    } else if (boardId == "2") {
+        const board = "board-cards.2";
+        postAllBoards(board);
+    } else if (boardId == "3") {
+        const board = "board-cards.3";
+        postAllBoards(board);
+    }
+}
 
-// export function getBoardSecond() {
-//     const cards = "boardSecond";
-//     getAllBoards(cards);
-// }
-// export function getBoardThird() {
-//     const cards = "boardThird";
-//     getAllBoards(cards);
-// }
 export function addBord(event) {
     document.getElementById("addToBoard").classList.toggle("show");
     event.stopPropagation();
@@ -53,20 +52,6 @@ export function addBord(event) {
 export function complain(event) {
     document.getElementById("complaint").classList.toggle("show");
     event.stopPropagation();
-}
-
-export function postBoardFirst() {
-    const board = "boardFirst";
-    postAllBoards(board);
-}
-
-export function postBoardSecond() {
-    const board = "boardSecond";
-    postAllBoards(board);
-}
-export function postBoardThird() {
-    const board = "boardThird";
-    postAllBoards(board);
 }
 
 export function getMenuCard(event, id) {
@@ -103,13 +88,16 @@ export function clickOnWin(event) {
     const closeMenuList = getElementsByRef("closeMenu");
     if (closeMenuList) {
         closeMenuList.forEach((menu) => menu.classList.remove("show"));
-        console.log("click");
     }
 }
 
 export class ActiveBoard {
     static set(id) {
-        localStorage.setItem("active-board", id);
+        if (id == null) {
+            localStorage.setItem("active-board", 0);
+        } else {
+            localStorage.setItem("active-board", id);
+        }
     }
     static getId() {
         return localStorage.getItem("active-board") ?? 0;
@@ -119,18 +107,30 @@ export class ActiveBoard {
 
         switch (id) {
             case "0":
-                return "photos"; // rename to board-cards
+                return "photos";
             case "1":
-                return "boardFirst"; // rename to board-cards.1
+                return "board-cards.1";
             case "2":
-                return "boardSecond"; // rename to board-cards.2
+                return "board-cards.2";
             case "3":
-                return "boardThird"; // rename to board-cards.3
+                return "board-cards.3";
             default:
-                return "boardFirst";
+                return "board-cards.1";
         }
     }
-    static getBoardStorage() {
-        return localStorage.getItem(this.getBoardName());
+    static getBoardCards() {
+        const data = localStorage.getItem(this.getBoardName());
+        if (this.getId == 0) {
+            return JSON.parse(data) || [];
+        }
+
+        const allCards = JSON.parse(localStorage.getItem("photos"));
+        if (data == null) {
+            const noPinsEl = getElementByRef("noPins");
+            noPinsEl.innerHTML = `<p class="no-pins" id="no-pins">Ваша доска пустая!(</p>`;
+            gallery.innerHTML = "";
+        } else {
+            return allCards.filter((card) => data.includes(card.id));
+        }
     }
 }

@@ -13,19 +13,14 @@ import listEvent, {
     updateBoardCards,
 } from "./modules/listEvent.js";
 import {
-    searchByPhoto,
+    searchByText,
     chooseBoard,
-    getBoardFirst,
-    getBoardSecond,
-    getBoardThird,
     addBord,
     complain,
-    postBoardFirst,
-    postBoardSecond,
-    postBoardThird,
     getMenuCard,
     clickOnWin,
     sendComplain,
+    recordingBoardCards,
 } from "./modules/listEvent.js";
 import { createCard } from "./modules/createCard.js";
 document.addEventListener("DOMContentLoaded", function () {
@@ -33,29 +28,23 @@ document.addEventListener("DOMContentLoaded", function () {
         gallery,
         searchByTag,
         btn,
-        btnBoardFirst,
-        btnBoardSecond,
-        btnBoardThird,
         boardBnt,
         complainBtn,
-        addToBoardBtnFirst,
-        addToBoardBtnSecond,
-        addToBoardBtnThird,
         btnCancel,
         btnSend,
         imageButton,
     } = createElement;
 
-    function renderCards() {
+    function renderPhotos() {
         runPinterestApplication();
-        images = ActiveBoard.getBoardStorage();
-
+        images = JSON.parse(localStorage.getItem("photos")); // Сделать совместимым с ActiveBoard
         const galleryElement = getElementByRef("gallery");
 
+        ActiveBoard.set();
         galleryElement.innerHTML = createCard(images);
     }
 
-    renderCards();
+    renderPhotos();
 
     const imageBtn = getElementsByRef("imageButton");
 
@@ -68,27 +57,22 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.addEventListener("click", function (event) {
             const { target } = event;
 
-            const boardId = parseInt(target.dataset.board); // need add attribute data-board to buttons
-            console.log(target, boardId);
+            const boardId = parseInt(target.dataset.board);
             ActiveBoard.set(boardId);
             updateBoardCards();
         });
     });
 
-    // const buttonBoardFirst = getElementsByRef("btnBoardFirst");
-    // buttonBoardFirst.forEach((btn) => {
-    //     btn.addEventListener("click", getBoardFirst);
-    // });
+    const addToBoard = getElementsByRef("addToBoard");
+    addToBoard.forEach((btn) => {
+        btn.addEventListener("click", function (event) {
+            const { target } = event;
 
-    // const buttonBoardSecond = getElementsByRef("btnBoardSecond");
-    // buttonBoardSecond.forEach((btn) => {
-    //     btn.addEventListener("click", getBoardSecond);
-    // });
-
-    // const buttonBoardThird = getElementsByRef("btnBoardThird");
-    // buttonBoardThird.forEach((btn) => {
-    //     btn.addEventListener("click", getBoardThird);
-    // });
+            const boardId = parseInt(target.dataset.board);
+            ActiveBoard.set(boardId);
+            recordingBoardCards(boardId);
+        });
+    });
 
     const homeLink = getElementByRef("homeLink");
     homeLink.addEventListener("click", () => {
@@ -100,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const searchByTagInput = getElementByRef("searchByTag");
-searchByTagInput.addEventListener("input", searchByPhoto);
+searchByTagInput.addEventListener("input", searchByText);
 
 const chooseBoardButton = getElementByRef("selectBoardBtn");
 chooseBoardButton.addEventListener("click", chooseBoard);
@@ -110,15 +94,6 @@ addBordButton.addEventListener("click", addBord);
 
 const complainButton = getElementByRef("complainBtn");
 complainButton.addEventListener("click", complain);
-
-const addToBoardButtonFirst = getElementByRef("addToBoardBtnFirst");
-addToBoardButtonFirst.addEventListener("click", postBoardFirst);
-
-const addToBoardButtonSecond = getElementByRef("addToBoardBtnSecond");
-addToBoardButtonSecond.addEventListener("click", postBoardSecond);
-
-const addToBoardButtonThird = getElementByRef("addToBoardBtnThird");
-addToBoardButtonThird.addEventListener("click", postBoardThird);
 
 const buttonCancel = getElementByRef("btnCancel");
 buttonCancel.addEventListener("click", btnCancel);
