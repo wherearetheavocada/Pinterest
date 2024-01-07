@@ -2,7 +2,7 @@
   "name": "graduationproject",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,7 +13,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel-bundler": "^1.12.5"
+    "buffer": "^6.0.3",
+    "events": "^3.3.0",
+    "parcel": "^2.11.0",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "util": "^0.12.5"
   },
   "dependencies": {
     "git": "^0.1.5",

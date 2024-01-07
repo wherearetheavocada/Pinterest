@@ -3,16 +3,20 @@ import {
     getElementByRef,
     getElementsByRef,
 } from "./createElement.js";
-import { images } from "../script.js";
+import { images } from "../index.js";
 import { createImage } from "./createImage";
 import { createCard, createCardsById } from "./createCard.js";
 import { getAllBoards, postAllBoards } from "./board.js";
 import { Exception } from "sass";
 
 export function searchByPhoto(event) {
+    // searchByText
     const { target } = event;
     const value = target.value.toLowerCase();
-    const filtImages = images.filter(({ alt_description }) =>
+
+    const cards = ActiveBoard.getBoardStorage();
+
+    const filtImages = cards.filter(({ alt_description }) =>
         alt_description.toLowerCase().includes(value)
     );
     console.log(createElement, createElement.gallery);
@@ -29,19 +33,19 @@ export function updateBoardCards() {
     getAllBoards();
 }
 
-export function getBoardFirst() {
-    const cards = "boardFirst";
-    getAllBoards(cards);
-}
+// export function getBoardFirst() {
+//     const cards = "boardFirst";
+//     getAllBoards(cards);
+// }
 
-export function getBoardSecond() {
-    const cards = "boardSecond";
-    getAllBoards(cards);
-}
-export function getBoardThird() {
-    const cards = "boardThird";
-    getAllBoards(cards);
-}
+// export function getBoardSecond() {
+//     const cards = "boardSecond";
+//     getAllBoards(cards);
+// }
+// export function getBoardThird() {
+//     const cards = "boardThird";
+//     getAllBoards(cards);
+// }
 export function addBord(event) {
     document.getElementById("addToBoard").classList.toggle("show");
     event.stopPropagation();
@@ -112,21 +116,21 @@ export class ActiveBoard {
     }
     static getBoardName() {
         const id = this.getId();
+
         switch (id) {
-            case 0:
+            case "0":
                 return "photos"; // rename to board-cards
-            case 1:
+            case "1":
                 return "boardFirst"; // rename to board-cards.1
-            case 2:
+            case "2":
                 return "boardSecond"; // rename to board-cards.2
-            case 3:
+            case "3":
                 return "boardThird"; // rename to board-cards.3
             default:
-                throw Exception("Доска с таким id не найдена");
+                return "boardFirst";
         }
     }
     static getBoardStorage() {
-        console.log(this.getBoardName());
         return localStorage.getItem(this.getBoardName());
     }
 }
